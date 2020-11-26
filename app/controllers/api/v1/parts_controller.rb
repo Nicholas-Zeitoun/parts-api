@@ -28,6 +28,11 @@ class Api::V1::PartsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    @part.destroy
+    head :no_content
+  end
+
   private
 
   def set_part
