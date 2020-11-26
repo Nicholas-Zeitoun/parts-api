@@ -11,7 +11,7 @@ class StatisticPolicy < ApplicationPolicy
 
   def update?
     # make sure the person updating is the person who made
-    record.user == user
+    true
   end
 
   def create?

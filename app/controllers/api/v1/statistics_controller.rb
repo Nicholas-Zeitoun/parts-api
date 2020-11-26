@@ -8,7 +8,20 @@ class Api::V1::StatisticsController < Api::V1::BaseController
 
   def update
     if @statistic.update(statistic_params)
-      render :show
+      # render :show
+    else
+      render_error
+    end
+  end
+
+  def create
+    @statistic = Statistic.new(statistic_params)
+    @statistic.user_id = current_user.id
+    @part = Part.find(params[:part_id])
+    @statistic.part = @part
+    authorize @statistic
+    if @statistic.save
+      render :index, status: :created
     else
       render_error
     end
